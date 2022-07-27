@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'app_color.dart';
 
 class AppButton extends StatelessWidget {
-  VoidCallback callback;
+  VoidCallback onTap;
   double width;
   String text;
   AppButton({Key? key,
    required this.text, 
    this.width = 100,
-   required this.callback
+   required this.onTap
    }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class AppButton extends StatelessWidget {
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(AppColor.primaryColor),
           ),
-          onPressed:callback,
+          onPressed:onTap,
           child: Text(text)),
     );
   }

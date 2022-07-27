@@ -9,9 +9,15 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (val) {
+        if (val == null || val.isEmpty) {
+          return "Enter your $hint";
+        }
+        return null;
+      },
       enableSuggestions: false,
       autocorrect: false,
-      style: TextStyle(
+      style: const TextStyle(
         color: AppColor.primaryColor,
         decoration: TextDecoration.none,
         ),
