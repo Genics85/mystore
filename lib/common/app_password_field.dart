@@ -45,6 +45,9 @@ class AppPasswordField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(width: 2, color: Colors.white)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(width: 2, color: Colors.white)),
         hintStyle: TextStyle(color: AppColor.primaryColor),
         hintText: hint,
       ),

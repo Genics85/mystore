@@ -3,6 +3,7 @@ import 'package:fosonline2/common/app_button.dart';
 import 'package:fosonline2/common/app_color.dart';
 import 'package:fosonline2/common/app_password_field.dart';
 import 'package:fosonline2/common/app_text_field.dart';
+import 'package:fosonline2/services/auth_services.dart';
 
 class AuthenticationPage extends StatefulWidget {
   static const routeName = "/authenticationPage";
@@ -17,11 +18,19 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
-
+  AuthService authService = AuthService();
   final GlobalKey<FormState> _signUpKey = GlobalKey();
   final GlobalKey<FormState> _signInKey = GlobalKey();
 
   bool obscurity = false;
+
+  void signUpUser() {
+    authService.signUpUser(
+        context: context,
+        email: _emailTextController.text,
+        name: _nameController.text,
+        password: _passwordController.text);
+  }
 
   void obscurityFun() {
     setState(() {
@@ -92,9 +101,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                   AppButton(
                                     text: "Login",
                                     onTap: () {
-                                      if(_signInKey.currentState!.validate()){
-
-                                      }
+                                      if (_signInKey.currentState!
+                                          .validate()) {}
                                     },
                                   )
                                 ],
@@ -135,13 +143,15 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                     obscurity: obscurity,
                                     obscurityFun: obscurityFun,
                                   ),
+                                  const SizedBox(height: 10,),
                                   AppButton(
-                                    text: "Sign Up",
-                                    onTap: () {
-                                      if(_signUpKey.currentState!.validate()){
-                                        
-                                      }
-                                    })
+                                      text: "Sign Up",
+                                      onTap: () {
+                                        if (_signUpKey.currentState!
+                                            .validate()) {
+                                          signUpUser();
+                                        }
+                                      })
                                 ],
                               ),
                             ),
